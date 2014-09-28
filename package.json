@@ -1,6 +1,6 @@
 {
   "name": "ember-spin-spinner",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/rsschermer/ember-spin-spinner",
   "engines": {
     "node": ">= 0.10.0"
