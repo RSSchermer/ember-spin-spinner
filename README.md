@@ -14,7 +14,20 @@ ember generate ember-spin-spinner
 Example:
 
 ``` handlebars
-{{spin-spinner lines=13 length=20 width=10}}
+<!-- somepage.hbs -->
+
+<div class='loading-container'>
+  {{spin-spinner lines=13 length=20 width=10}}
+</div>
+```
+
+``` css
+/* somepage.css */
+
+.loading-container {
+  /* The spinner is absolutely positioned (in the center by default) so set parent position to relative */
+  position: relative;
+}
 ```
 
 The following properties can be set:
