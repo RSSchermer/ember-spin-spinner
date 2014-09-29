@@ -30,7 +30,7 @@ Example:
 }
 ```
 
-The following properties can be set:
+The following properties can be set to customize a particular spinner:
 
 * `lines` (default: 13): the number of lines to draw
 * `length` (default: 20): the length of each line
@@ -46,3 +46,17 @@ The following properties can be set:
 * `hwaccel` (default: false): whether to use hardware acceleration
 * `top` (default: '50%'): top position relative to parent
 * `left` (default: '50%'): left position relative to parent.
+
+If you want to set different defaults for all spinners in your application, extend the component and override the
+defaults with your own:
+
+```javascript
+// app/components/spin-spinner.js
+import SpinSpinnerComponent from 'ember-spin-spinner/components/spin-spinner';
+
+export default SpinSpinnerComponent.extend({
+  length: 6,
+
+  width: 2
+});
+```
