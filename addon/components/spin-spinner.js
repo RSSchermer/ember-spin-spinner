@@ -34,7 +34,7 @@ export default Ember.Component.extend({
   top: '50%',
 
   style: function () {
-    return 'position: absolute; width: 0; height: 0; left: '+ this.get('left') +'; top: '+ this.get('top') +';';
+    return ('position: absolute; width: 0; height: 0; left: '+ this.get('left') +'; top: '+ this.get('top') +';').htmlSafe();
   }.property('top', 'left'),
 
   startSpinner: function () {
