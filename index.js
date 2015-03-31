@@ -14,7 +14,7 @@ module.exports = {
 
     var spinPath = path.join(app.bowerDirectory, 'spin.js');
 
-    this.app.import(path.join(spinPath, 'spin.js'));
-    this.app.import(path.join(spinPath, 'jquery.spin.js'));
+    app.import(path.join(spinPath, 'spin.js'));
+    app.import(path.join(spinPath, 'jquery.spin.js'));
   }
 };
