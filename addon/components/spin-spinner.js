@@ -33,11 +33,11 @@ export default Ember.Component.extend({
 
   top: '50%',
 
-  style: function () {
-    return ('position: absolute; width: 0; height: 0; left: '+ this.get('left') +'; top: '+ this.get('top') +';').htmlSafe();
-  }.property('top', 'left'),
+  style: Ember.computed('top', 'left', function () {
+    return Ember.String.htmlSafe('position: absolute; width: 0; height: 0; left: '+ this.get('left') +'; top: '+ this.get('top') +';');
+  }),
 
-  startSpinner: function () {
+  startSpinner: Ember.on('didInsertElement', function () {
     this.$().spin({
       lines: this.get('lines'),
       length: this.get('length'),
@@ -53,9 +53,9 @@ export default Ember.Component.extend({
       left: 'auto',
       top: 'auto'
     }, this.get('color'));
-  }.on('didInsertElement'),
+  }),
 
-  stopSpinner: function () {
+  stopSpinner: Ember.on('willDestroyElement', function () {
     this.$().data().spinner.stop();
-  }.on('willDestroyElement')
+  })
 });
