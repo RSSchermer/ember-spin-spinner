@@ -3,8 +3,6 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNames: ['spin-spinner'],
 
-  attributeBindings: ['style'],
-
   lines: 13,
 
   length: 20,
@@ -33,11 +31,15 @@ export default Ember.Component.extend({
 
   top: '50%',
 
-  style: Ember.computed('top', 'left', function () {
-    return Ember.String.htmlSafe('position: absolute; width: 0; height: 0; left: '+ this.get('left') +'; top: '+ this.get('top') +';');
-  }),
-
   startSpinner: Ember.on('didInsertElement', function () {
+    this.$().css({
+      'position': 'absolute',
+      'width': 0,
+      'height': 0,
+      'left': this.get('left'),
+      'top': this.get('top')
+    });
+
     this.$().spin({
       lines: this.get('lines'),
       length: this.get('length'),
