@@ -1,6 +1,6 @@
 {
   "name": "ember-spin-spinner",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Ember component wrapper for spin.js.",
   "directories": {
     "doc": "doc",
