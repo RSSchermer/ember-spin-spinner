@@ -7,8 +7,7 @@ Simple Ember spinner component based on [spin.js](http://fgnass.github.io/spin.j
 ## Installation
 
 ```
-npm install ember-spin-spinner --save-dev
-ember generate ember-spin-spinner
+ember install ember-spin-spinner
 ```
 
 ## Usage
