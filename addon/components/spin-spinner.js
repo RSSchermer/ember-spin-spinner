@@ -11,6 +11,8 @@ export default Ember.Component.extend({
 
   radius: 30,
 
+  scale: 1,
+
   corners: 1,
 
   rotate: 0,
@@ -45,6 +47,7 @@ export default Ember.Component.extend({
       length: this.get('length'),
       width: this.get('width'),
       radius: this.get('radius'),
+      scale: this.get('scale'),
       corners: this.get('corners'),
       rotate: this.get('rotate'),
       direction: this.get('direction'),
