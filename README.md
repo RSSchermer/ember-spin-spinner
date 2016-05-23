@@ -42,7 +42,7 @@ The following properties can be set to customize a particular spinner:
 * `length` (default: `20`): the length of each line.
 * `width` (default: `10`): the line thickness.
 * `radius` (default: `30`): the radius of the inner circle.
-* `scale` (default: `1`): the overall size of the spinner.
+* `scale` (default: `1`): scales the overall size of the spinner.
 * `corners` (default: `1`): corner roundness (0..1).
 * `rotate` (default: `0`): the rotation offset.
 * `direction` (default: `1`): 1 for clockwise, -1 for counterclockwise.
