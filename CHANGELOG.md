@@ -1,4 +1,8 @@
-# Ember-spin-spinner Changelog
+# Ember-spin-spinner Change Log
+
+## 0.3.0
+
+Adds the `scale` property, which can be used to scale the overall size of the spinner (thanks @mnowik!).
 
 ## 0.2.0
 
