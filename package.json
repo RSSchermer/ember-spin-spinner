@@ -1,17 +1,22 @@
 {
   "name": "ember-spin-spinner",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.3.2",
+  "description": "Ember component wrapper for spin.js.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-component",
+    "spinner",
+    "spinjs",
+    "spin.js",
+    "spin"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Roland Schermer",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/rsschermer/ember-spin-spinner",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
@@ -46,5 +51,9 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/rsschermer/ember-spin-spinner/issues"
+  },
+  "homepage": "https://github.com/rsschermer/ember-spin-spinner"
 }
