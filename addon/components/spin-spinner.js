@@ -23,6 +23,8 @@ export default Ember.Component.extend({
 
   trail: 60,
 
+  zIndex: 2e9,
+
   shadow: false,
 
   hwaccel: false,
@@ -53,6 +55,7 @@ export default Ember.Component.extend({
       direction: this.get('direction'),
       speed: this.get('speed'),
       trail: this.get('trail'),
+      zIndex: this.get('zIndex'),
       shadow: this.get('shadow'),
       hwaccel: this.get('hwaccel'),
       left: 'auto',
