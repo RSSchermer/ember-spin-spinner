@@ -49,6 +49,7 @@ The following properties can be set to customize a particular spinner:
 * `color` (default: parent element text color): #rgb or #rrggbb or array of colors.
 * `speed` (default: `1`): rounds per second.
 * `trail` (default: `60`): afterglow percentage.
+* `zIndex` (default: `2e9`): the z-index
 * `shadow` (default: `false`): whether to render a shadow.
 * `hwaccel` (default: `false`): whether to use hardware acceleration.
 * `top` (default: `'50%'`): top position relative to parent.
