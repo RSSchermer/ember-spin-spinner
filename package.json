@@ -1,6 +1,6 @@
 {
   "name": "ember-spin-spinner",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Ember component wrapper for spin.js.",
   "keywords": [
     "ember-addon",
