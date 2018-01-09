@@ -20,7 +20,11 @@ module.exports = {
      * to do the below imports itself in its included hook.
      */
     if (typeof(app.import) === 'function') {
-      var spinPath = path.join(app.bowerDirectory, 'spin.js');
+      var bowerDirectory = app.bowerDirectory;
+      if (!bowerDirectory && app.app) {
+        bowerDirectory = app.app.bowerDirectory;
+      }
+      var spinPath = path.join(bowerDirectory, 'spin.js');
 
       app.import(path.join(spinPath, 'spin.js'));
       app.import(path.join(spinPath, 'jquery.spin.js'));
