@@ -1,6 +1,0 @@
-{
-  "name": "ember-spin-spinner",
-  "dependencies": {
-    "spin.js": "~2.3.2"
-  }
-}

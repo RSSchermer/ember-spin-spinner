@@ -1,7 +1,12 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { htmlSafe } from '@ember/string';
+import { Spinner } from 'spin';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['spin-spinner'],
+
+  attributeBindings: ['style'],
 
   lines: 13,
 
@@ -29,22 +34,22 @@ export default Ember.Component.extend({
 
   hwaccel: false,
 
-  color: null,
+  color: '#333',
 
   left: '50%',
 
   top: '50%',
 
-  startSpinner: Ember.on('didInsertElement', function () {
-    this.$().css({
-      'position': 'absolute',
-      'width': 0,
-      'height': 0,
-      'left': this.get('left'),
-      'top': this.get('top')
-    });
+  style: computed('left', 'top', function () {
+    return htmlSafe('position: absolute;' +
+      'width: 0;' +
+      'height: 0;' +
+      `left: ${this.get('left')};` +
+      `top: ${this.get('top')};`);
+  }),
 
-    this.$().spin({
+  didInsertElement() {
+    let spinner = new Spinner({
       lines: this.get('lines'),
       length: this.get('length'),
       width: this.get('width'),
@@ -59,11 +64,14 @@ export default Ember.Component.extend({
       shadow: this.get('shadow'),
       hwaccel: this.get('hwaccel'),
       left: 'auto',
-      top: 'auto'
-    }, this.get('color'));
-  }),
+      top: 'auto',
+      color: this.get('color')
+    }).spin(this.element);
+    
+    this.set('spinner', spinner);
+  },
 
-  stopSpinner: Ember.on('willDestroyElement', function () {
-    this.$().data().spinner.stop();
-  })
+  willDestroyElement() {
+    this.get('spinner').stop();
+  }
 });

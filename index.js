@@ -1,33 +1,77 @@
-/* eslint-env node */
 'use strict';
-var path = require('path');
+
+const path = require('path');
+const resolve = require('resolve');
+const Rollup = require('broccoli-rollup');
+const Funnel = require('broccoli-funnel');
+const mergeTrees = require('broccoli-merge-trees');
+const transformer = require('ember-cli-es6-transform');
 
 module.exports = {
-  name: 'ember-spin-spinner',
+  name: require('./package').name,
 
-  blueprintsPath: function() {
-    return path.join(__dirname, 'blueprints');
+  included(app) {
+    // this._super.included.apply(app, arguments);
+    this._super.included.apply(this, arguments);
+    this.app = this._findHost();
+
+    app.import('vendor/spin.js');
   },
 
-  included: function(app) {
-    this._super.included.apply(this, arguments);
+  // Code borrowed from https://github.com/kiwiupover/ember-cli-spinjs
+  
+  treeForVendor(tree) {
+    const spinJsPath = path.join(resolve.sync('spin.js'), '..');
 
-    /* This check is a temporary hack to make it possible to use this addon
-     * both as a top level addon dependency, and as a nested addon dependency
-     * for another addon, pending resolution of https://github.com/ember-cli/ember-cli/issues/3718
-     *
-     * Any addon that wants to use this addon as a nested addon dependency needs
-     * to do the below imports itself in its included hook.
-     */
-    if (typeof(app.import) === 'function') {
-      var bowerDirectory = app.bowerDirectory;
-      if (!bowerDirectory && app.app) {
-        bowerDirectory = app.app.bowerDirectory;
+    let allTrees = [];
+
+    let rollupTree = new Rollup(spinJsPath, {
+      rollup: {
+        input: 'spin.js',
+        output: {
+          file: 'spin.js',
+          format: 'es'
+        },
+        onwarn: function(warning) {
+
+          // Suppress known error message caused by TypeScript compiled code with Rollup
+          // https://github.com/rollup/rollup/wiki/Troubleshooting#this-is-undefined
+          if (warning.code === 'THIS_IS_UNDEFINED') {
+            return;
+          }
+
+          // eslint-disable-next-line no-console
+          console.log("Rollup warning: ", warning.message);
+        },
       }
-      var spinPath = path.join(bowerDirectory, 'spin.js');
+    });
 
-      app.import(path.join(spinPath, 'spin.js'));
-      app.import(path.join(spinPath, 'jquery.spin.js'));
+    const babel = this.app.project.findAddonByName('ember-cli-babel');
+    const babelOptions = babel.buildBabelOptions();
+    const es6Tree = transformer.es6Transform(rollupTree, babelOptions);
+
+    allTrees.push(es6Tree);
+
+    if (tree) {
+      allTrees.push(tree);
     }
+
+    return mergeTrees(allTrees);
+  },
+
+  treeForAddonStyles: function (tree) {
+    const spinJsPath = path.join(resolve.sync('spin.js'), '..');
+
+    let spinJsCSSTree = new Funnel(spinJsPath, {
+      include: ['spin.css']
+    });
+
+    let allCSSTrees = [spinJsCSSTree];
+
+    if (tree) {
+      allCSSTrees.push(tree);
+    }
+
+    return mergeTrees(allCSSTrees);
   }
 };
