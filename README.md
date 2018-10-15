@@ -46,7 +46,7 @@ The following properties can be set to customize a particular spinner:
 * `corners` (default: `1`): corner roundness (0..1).
 * `rotate` (default: `0`): the rotation offset.
 * `direction` (default: `1`): 1 for clockwise, -1 for counterclockwise.
-* `color` (default: parent element text color): #rgb or #rrggbb or array of colors.
+* `color` (default: `#333`): #rgb or #rrggbb or array of colors.
 * `speed` (default: `1`): rounds per second.
 * `trail` (default: `60`): afterglow percentage.
 * `zIndex` (default: `2e9`): the z-index
