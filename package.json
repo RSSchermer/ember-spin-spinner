@@ -23,7 +23,8 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.3.0"
+    "ember-cli-babel": "^6.3.0",
+    "spin.js": "~2.3.2"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
